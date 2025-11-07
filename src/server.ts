@@ -2,7 +2,6 @@ import express from "express";
 import userRouter from "./routes/user.router.js";
 import appointmentRouter from "./routes/appointment.router.js";
 import contractRouter from "./routes/contract.router.js";
-import serviceRouter from "./routes/legalServices.router.js"
 import db from "../src/config/db.js";
 import colors from 'colors'
 import cors from 'cors'
@@ -12,6 +11,8 @@ import taskRouter from "./routes/appointmentTask.router.js"
 import authRouter from "./routes/login.js";
 import roleRouter from "./routes/role.js";
 import { createDefaultUser } from "./seed/DefaultUser.js";
+import legalServiceRouter from "./routes/legalServiceRoutes.js";
+import serviceCategoryRouter from "./routes/serviceCategoryRoutes.js";
 
 
 //conectar a base de datos
@@ -35,13 +36,13 @@ server.use(morgan('dev'))
 //read form data
 server.use(express.json())
 
-//All the changes we make here will affect the links we have in the router file
 server.use("/api/user", userRouter);
 server.use("/api/auth",authRouter);
 server.use("/api/role", roleRouter);
 server.use("/api/appointment", appointmentRouter);
 server.use("/api", taskRouter);
 server.use("/api/contract", contractRouter);
-server.use("/api/services",serviceRouter);
+server.use("/api/services",legalServiceRouter);
+server.use("/api/categories",serviceCategoryRouter);
 
 export default server;

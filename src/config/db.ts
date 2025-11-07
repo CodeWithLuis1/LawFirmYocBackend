@@ -8,6 +8,7 @@ import Appointment from "../models/Appointment.model.js";
 import Service from "../models/LegalServices.model.js";
 import Task from "../models/AppointmentTasks.model.js"
 import Role from "../models/Rol.model.js";
+import ServiceCategory from "../models/ServiceCategory.js";
 
 dotenv.config()
 
@@ -17,5 +18,5 @@ const __dirname = dirname(__filename);
 const db = new Sequelize(process.env.DATABASE_URL!,{
     models: [join(__dirname, '../models/*.ts')]
 })
- db.addModels([User, Contract, Appointment, Service,Task,Role]);
+ db.addModels([User, Contract, Appointment, Service,Task,Role,ServiceCategory]);
 export default db

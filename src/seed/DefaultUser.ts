@@ -16,6 +16,7 @@ export async function createDefaultUser() {
 
   if (!existingUser) {
     await User.create({
+      name: "Administrador del sistema",
       username: "admin",
       password: "admin", // se hashea automáticamente
       roleId: adminRole.id,

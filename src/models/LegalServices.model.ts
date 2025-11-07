@@ -1,34 +1,43 @@
-import { Table, Column, Model, DataType } from "sequelize-typescript";
+import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
+import ServiceCategory from './ServiceCategory.js';
 
 @Table({
-  tableName: "services",
-  timestamps: true,
+  tableName: 'legalServices',
+  timestamps: false,
 })
-class Service extends Model {
+class LegalService extends Model {
+  @Column({
+    type: DataType.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  })
+  declare id_service: number;
+
   @Column({
     type: DataType.STRING(100),
     allowNull: false,
   })
   declare name: string;
 
+  // Relación con la categoría
+  @ForeignKey(() => ServiceCategory)
   @Column({
-    type: DataType.STRING(50),
+    type: DataType.INTEGER,
     allowNull: false,
   })
-  declare category: string;
-
-@Column({
-  type: DataType.DECIMAL(10, 2), // permite valores como 2500.00
-  allowNull: false,
-})
-declare price: number;
-
+  declare id_category: number;
 
   @Column({
-    type: DataType.STRING(50),
+    type: DataType.DECIMAL(10, 2),
     allowNull: false,
   })
-  declare duration: string;
+  declare price: number;
+
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  declare duration: number;
 
   @Column({
     type: DataType.TEXT,
@@ -37,10 +46,13 @@ declare price: number;
   declare description: string;
 
   @Column({
-    type: DataType.ENUM("Activo", "Pausado"),
-    allowNull: false,
+    type: DataType.BOOLEAN,
+    defaultValue: true,
   })
-  declare status: "Activo" | "Pausado";
+  declare status: boolean;
+
+  @BelongsTo(() => ServiceCategory)
+  declare category: ServiceCategory;
 }
 
-export default Service;
+export default LegalService;
