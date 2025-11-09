@@ -6,7 +6,7 @@ export class AppointmentController {
     const appointment = new Appointment(req.body);
     try {
       await appointment.save();
-      res.send("Appointment created successfully");
+      res.send("Cita creada correctamente");
     } catch (error) {
       console.log(error);
     }

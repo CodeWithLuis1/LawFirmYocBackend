@@ -86,7 +86,6 @@ export const getLegalServices = async (req: Request, res: Response) => {
       total,
       limit,
       lastPage,
-      offset: offsetParam ?? (pageParam - 1) * (limit ?? 0), // opcional, para depuración
     });
   } catch (error: any) {
     console.error(error);
