@@ -1,6 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var server_1 = require("../src/server");
-console.log("From indext.ts");
-(0, server_1.sum)();
+import server from './server.js';
+import colors from 'colors';
+const port = process.env.PORT || 5000;
+server.listen(5000, () => {
+    console.log(colors.bgCyan.bold(`REST API, en el perto ${port}`));
+});
 //# sourceMappingURL=index.js.map

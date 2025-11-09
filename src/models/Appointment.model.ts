@@ -1,5 +1,4 @@
-import { Table, Column, Model, DataType, HasMany } from "sequelize-typescript";
-import Task  from "./AppointmentTasks.model.js";
+import { Table, Column, Model, DataType } from "sequelize-typescript";
 
 @Table({
   tableName: "appointments",
@@ -11,6 +10,7 @@ class Appointment extends Model {
     allowNull: false,
   })
   declare clientName: string;
+
   @Column({
     type: DataType.STRING(100),
     allowNull: true,
@@ -24,25 +24,22 @@ class Appointment extends Model {
   declare clientPhone: string;
 
   @Column({
-    type: DataType.DATEONLY, // Solo la fecha (YYYY-MM-DD)
+    type: DataType.DATEONLY,
     allowNull: false,
   })
   declare appointmentDate: string;
 
   @Column({
-    type: DataType.TIME, // Solo la hora (HH:MM:SS)
+    type: DataType.TIME,
     allowNull: false,
   })
   declare appointmentTime: string;
+
   @Column({
-    type: DataType.STRING(255), // Razón de la cita
+    type: DataType.STRING(255),
     allowNull: true,
   })
   declare reason: string;
-
-  //  Relación uno a muchos
-  @HasMany(() => Task)
-  declare tasks: Task[];
 }
 
 export default Appointment;

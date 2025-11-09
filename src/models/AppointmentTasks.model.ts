@@ -2,29 +2,30 @@ import {
   Table,
   Column,
   Model,
-  DataType,
   ForeignKey,
   BelongsTo,
+  DataType,
 } from "sequelize-typescript";
-import Appointment  from "./Appointment.model.js";
+import Appointment from "./Appointment.model.js";
 
 @Table({
-  tableName: "tasks",
+  tableName: "appointment_tasks",
   timestamps: true,
 })
-export default class Task extends Model {
+class AppointmentTasks extends Model {
   @Column({
-    type: DataType.STRING(100),
+    type: DataType.STRING(255),
     allowNull: false,
-  })
-  declare name: string;
-
-  @Column({
-    type: DataType.TEXT,
-    allowNull: true,
   })
   declare description: string;
 
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  declare completed: boolean;
+
+  // ✅ Nueva columna para manejar el estado de la tarea
   @Column({
     type: DataType.ENUM(
       "pendiente",
@@ -38,14 +39,12 @@ export default class Task extends Model {
   })
   declare status: string;
 
-  // Clave foránea a la cita
   @ForeignKey(() => Appointment)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
+  @Column
   declare appointmentId: number;
 
   @BelongsTo(() => Appointment)
   declare appointment: Appointment;
 }
+
+export default AppointmentTasks;
