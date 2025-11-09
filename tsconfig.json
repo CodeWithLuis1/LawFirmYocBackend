@@ -9,11 +9,10 @@
     "declaration": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "target": "ESNext"
-         
-
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "target": "ES2021",
+    "resolveJsonModule": true
   },
   "include": ["src/**/*.ts"]
 }
